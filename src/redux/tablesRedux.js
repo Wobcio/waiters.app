@@ -1,3 +1,4 @@
+import { API_URL } from "../config";
 
 
 // selectors
@@ -25,15 +26,16 @@ export const sendTables = payload => {
         body: JSON.stringify(payload),
     };
     
-    fetch(`http://localhost:3131/tables/${payload.id}`, options)
+    fetch(`${API_URL}/tables/${payload.id}`, options)
         .then(res => res.json())
         .then(alert("Table updated"))
     }
 };
 
 export const fetchTables = callbackFunction => {
+    console.log(API_URL);
     return (dispatch) => {
-        fetch('http://localhost:3131/tables')
+        fetch(`${API_URL}/tables`)
             .then(res => res.json())
             .then(tables =>{
                 dispatch(updateTables(tables));
