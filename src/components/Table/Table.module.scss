@@ -1,0 +1,18 @@
+@use "sass:math";
+@import'../../styles/settings.scss';
+
+.slash {
+    font-size: ($base-size * 2);
+}
+
+.slashBox {
+    width: ($base-size * 3) !important;
+}
+
+.bill {
+    display: none !important;
+}
+
+.active {
+    display: flex !important;
+}

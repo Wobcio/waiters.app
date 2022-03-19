@@ -1,0 +1,15 @@
+@use "sass:math";
+@import'../../styles/settings.scss';
+
+
+.title {
+    margin-bottom: $base-size;
+}
+
+.spinner {
+    display: none !important;
+}
+
+.active {
+    display: block !important;
+}

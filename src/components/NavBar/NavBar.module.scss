@@ -1,0 +1,12 @@
+@use "sass:math";
+@import'../../styles/settings.scss';
+
+
+.navbar {
+    margin-bottom:($base-size * 3);
+}
+
+a {
+    color: inherit !important;
+    text-decoration: none !important;
+}

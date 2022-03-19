@@ -1,24 +1,37 @@
-import logo from './logo.svg';
-import './App.css';
+import { fetchTables } from "./redux/tablesRedux";
+import { useDispatch } from "react-redux";
+import { useEffect, useState } from "react";
+import NavBar from "./components/NavBar/NavBar";
+import Home from "./components/Home/Home";
+import { Route, Routes } from "react-router";
+import Page404 from "./components/Page404/Page404";
+import Table from "./components/Table/Table";
+import Footer from "./components/Footer/Footer";
 
-function App() {
+
+const App = () => {
+
+  const [loading, setLoading] = useState(true);
+
+  const handleLoading = () => {
+    setLoading(false);
+  }
+
+  const dispatch = useDispatch();
+  useEffect( () => dispatch(fetchTables(handleLoading)), [dispatch]);
+  
+  
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+    <NavBar />
+        <Routes>
+          <Route path="/" element={<Home loading={loading} />} />
+          <Route path="/table/:tableId" element={<Table />} />
+          <Route path="*" element={<Page404 />} />
+        </Routes>
+    <Footer />
+    </>
   );
 }
 
