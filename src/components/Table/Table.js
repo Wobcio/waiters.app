@@ -33,13 +33,18 @@ const Table = () => {
     let peopleValid = peopleInt;
     let maxPeopleValid = maxPeopleInt;
     let billVisible;
+    let peopleVisible;
 
     if (status === "cleaning" || status === "free"){
         billVisible = false;
+        peopleVisible = false;
         peopleValid = 0;
         maxPeopleValid = 0;
+    }else if (status === "reserved"){
+        peopleVisible = true;
     }else if(status === "busy"){
         billVisible = true;
+        peopleVisible = true;
         if (peopleInt > 10){
             setPeople(10)
         } else if (peopleInt < 0){
@@ -95,7 +100,7 @@ const Table = () => {
                     </Col>
                 </Form.Group>
 
-                <Form.Group as={Row} className="mb-3" controlId="formHorizontalStatus">
+                <Form.Group as={Row} className={clsx("mb-3",styles.hidden, peopleVisible == true && styles.active)} controlId="formHorizontalStatus">
                     <Form.Label column sm={1}>
                         People:
                     </Form.Label>
@@ -110,7 +115,7 @@ const Table = () => {
                     </Col>
                 </Form.Group>
 
-                <Form.Group as={Row} controlId="formHorizontalStatus" className={clsx("mb-3", styles.bill, billVisible == true && styles.active)}>
+                <Form.Group as={Row} controlId="formHorizontalStatus" className={clsx("mb-3", styles.hidden, billVisible == true && styles.active)}>
                     <Form.Label column sm={1}>
                         Bill:
                     </Form.Label>
